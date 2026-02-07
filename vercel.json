@@ -5,6 +5,7 @@
     }
   },
   "routes": [
+    { "src": "/(css|js|img|uploads|student_picture)/(.*)", "dest": "/$1/$2" },
     { "src": "/(.*)", "dest": "/api/index.php" }
   ]
 }
