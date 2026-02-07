@@ -1,14 +1,21 @@
 <?php
-// Use getenv() to pull secrets from Vercel's environment variables
+// Pull credentials from Vercel environment variables
 $host = getenv('DB_HOST');
 $user = getenv('DB_USER');
-$pass = getenv('DB_PASSWORD'); // No more hardcoded password here!
+$pass = getenv('DB_PASSWORD');
 $db   = getenv('DB_NAME');
-$port = getenv('DB_PORT') ?: '3306';
+$port = "3306"; 
 
-$conn = new mysqli($host, $user, $pass, $db, $port);
+// Initialize connection with a 10-second timeout
+$conn = mysqli_init();
+$conn->options(MYSQLI_OPT_CONNECT_TIMEOUT, 10); 
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+// Connect to the Aiven MySQL server
+if (!$conn->real_connect($host, $user, $pass, $db, $port)) {
+    error_log("Connection failed: " . mysqli_connect_error());
+    die("The database is taking too long to respond. Please refresh the page.");
 }
+
+// Ensure the connection uses the correct character set for item descriptions
+$conn->set_charset("utf8mb4");
 ?>
