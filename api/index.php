@@ -1,6 +1,6 @@
 <?php
 // Include your secure database connection
-require_once 'api/db_connect.php'; 
+require_once 'db_connect.php';
 
 // 1. Define the SQL query string
 $sql = "SELECT * FROM found_items ORDER BY date_found DESC LIMIT 5";
