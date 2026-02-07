@@ -1,22 +1,21 @@
 <?php
+// Get connection info from Vercel Environment Variables
+$host = getenv('DB_HOST');
+$user = getenv('DB_USER');
+$pass = getenv('DB_PASSWORD');
+$db   = getenv('DB_NAME');
+$port = getenv('DB_PORT');
+
+// Initialize MySQLi
 $mysqli = mysqli_init();
 
-// 1. Define the port OUTSIDE the function call
-$port = getenv('DB_PORT') ?: 19987; 
+// Required for Aiven's secure connection
+$mysqli->ssl_set(NULL, NULL, NULL, NULL, NULL);
 
-// 2. Pass the variables into the function
-$success = mysqli_real_connect(
-    $mysqli,
-    getenv('DB_HOST'),
-    getenv('DB_USER'),
-    getenv('DB_PASSWORD'),
-    getenv('DB_NAME'),
-    $port,             // Use the variable here
-    null,
-    MYSQLI_CLIENT_SSL
-);
+// Establish connection
+$mysqli->real_connect($host, $user, $pass, $db, $port, NULL, MYSQLI_CLIENT_SSL);
 
-if (!$success) {
-    die("Connect Error: " . mysqli_connect_error());
+if ($mysqli->connect_error) {
+    die("Connection failed: " . $mysqli->connect_error);
 }
 ?>

@@ -2,11 +2,10 @@
 // Include your secure database connection
 require_once 'db_connect.php';
 
-// 1. Define the SQL query string
+// 1. Define the SQL query string to fetch items
 $sql = "SELECT * FROM found_items ORDER BY date_found DESC LIMIT 5";
 
-// 2. Execute the query and STORE it in $results so the HTML can use it
-// Passing the $sql variable inside the parentheses fixes the ArgumentCountError
+// 2. Execute the query
 $results = $mysqli->query($sql); 
 ?>
 
@@ -16,7 +15,7 @@ $results = $mysqli->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lost and Found System</title>
-    <link rel="stylesheet" href="../style.css"> 
+    <link rel="stylesheet" href="/style.css"> 
 </head>
 <body>
     <header>
@@ -31,14 +30,13 @@ $results = $mysqli->query($sql);
     <main>
         <h2>Recent Found Items</h2>
         <div class="items-grid">
-            <?php 
-            // Check if $results exists and has rows
-            if ($results && $results->num_rows > 0): ?>
+            <?php if ($results && $results->num_rows > 0): ?>
                 <?php while($item = $results->fetch_assoc()): ?>
                     <div class="item-card">
                         <h3><?php echo htmlspecialchars($item['item_name']); ?></h3>
-                        <p>Location: <?php echo htmlspecialchars($item['location']); ?></p>
-                        <p>Date: <?php echo htmlspecialchars($item['date_found']); ?></p>
+                        <p><strong>Location:</strong> <?php echo htmlspecialchars($item['location']); ?></p>
+                        <p><strong>Date:</strong> <?php echo htmlspecialchars($item['date_found']); ?></p>
+                        <p><?php echo htmlspecialchars($item['description']); ?></p>
                     </div>
                 <?php endwhile; ?>
             <?php else: ?>
