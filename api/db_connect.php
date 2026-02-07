@@ -1,21 +1,22 @@
 <?php
-// Pull credentials from Vercel environment variables
-$host = getenv('DB_HOST');
-$user = getenv('DB_USER');
-$pass = getenv('DB_PASSWORD');
-$db   = getenv('DB_NAME');
-$port = "3306"; 
+$mysqli = mysqli_init();
 
-// Initialize connection with a 10-second timeout
-$conn = mysqli_init();
-$conn->options(MYSQLI_OPT_CONNECT_TIMEOUT, 10); 
+// 1. Define the port OUTSIDE the function call
+$port = getenv('DB_PORT') ?: 19987; 
 
-// Connect to the Aiven MySQL server
-if (!$conn->real_connect($host, $user, $pass, $db, $port)) {
-    error_log("Connection failed: " . mysqli_connect_error());
-    die("The database is taking too long to respond. Please refresh the page.");
+// 2. Pass the variables into the function
+$success = mysqli_real_connect(
+    $mysqli,
+    getenv('DB_HOST'),
+    getenv('DB_USER'),
+    getenv('DB_PASSWORD'),
+    getenv('DB_NAME'),
+    $port,             // Use the variable here
+    null,
+    MYSQLI_CLIENT_SSL
+);
+
+if (!$success) {
+    die("Connect Error: " . mysqli_connect_error());
 }
-
-// Ensure the connection uses the correct character set for item descriptions
-$conn->set_charset("utf8mb4");
 ?>
