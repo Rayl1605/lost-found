@@ -4,7 +4,7 @@ require_once 'db_connect.php';
 
 // Fetch a few recent found items to show on the homepage
 $query = "SELECT * FROM found_items ORDER BY date_found DESC LIMIT 5";
-$results = $conn->query($query);
+$mysqli->query()
 ?>
 
 <!DOCTYPE html>
