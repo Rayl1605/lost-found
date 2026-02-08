@@ -1,9 +1,9 @@
 <?php
-// Secure connection to Aiven
+// Secure connection for Aiven
 $mysqli = mysqli_init();
 $mysqli->ssl_set(NULL, NULL, NULL, NULL, NULL);
 
-// Replace with your Aiven credentials
+// Using direct credentials for stability
 $mysqli->real_connect(
     "mysql-2020e1cf-rayllyalmendras-0230.j.aivencloud.com", 
     "avnadmin", 
@@ -15,6 +15,6 @@ $mysqli->real_connect(
 );
 
 if ($mysqli->connect_error) {
-    die("Connection failed: " . $mysqli->connect_error);
+    die("Database Connection failed: " . $mysqli->connect_error);
 }
 ?>
