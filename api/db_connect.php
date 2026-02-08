@@ -1,9 +1,9 @@
 <?php
-// Initialize MySQLi for a secure Aiven connection
+// Initialize MySQLi for SSL connection
 $mysqli = mysqli_init();
 $mysqli->ssl_set(NULL, NULL, NULL, NULL, NULL);
 
-// Establish the connection using your specific Aiven credentials
+// Connect to Aiven MySQL using your credentials
 $mysqli->real_connect(
     "mysql-2020e1cf-rayllyalmendras-0230.j.aivencloud.com", 
     "avnadmin", 
