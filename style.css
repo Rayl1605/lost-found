@@ -21,12 +21,12 @@ body.dashboard-body {
 }
 
 .dashboard-container {
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 40px auto;
     padding: 0 20px;
 }
 
-/* Action Card Design */
+/* Action Cards */
 .action-selection { text-align: center; margin-bottom: 50px; }
 .action-grid { display: flex; gap: 30px; justify-content: center; margin-top: 30px; }
 
@@ -59,7 +59,7 @@ body.dashboard-body {
     font-size: 0.9rem;
 }
 
-/* Report Table Design */
+/* Report Table */
 .report-table {
     width: 100%;
     background: var(--white);
@@ -69,13 +69,13 @@ body.dashboard-body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
-.report-table th { background: #fafafa; padding: 20px; text-align: left; font-size: 11px; color: #999; text-transform: uppercase; }
+.report-table th { background: #fafafa; padding: 20px; text-align: left; font-size: 11px; color: #aaa; text-transform: uppercase; }
 .report-table td { padding: 20px; border-bottom: 1px solid #f8f8f8; }
 
 .status-badge {
     background: #e8f5e9;
     color: var(--primary-green);
-    padding: 5px 15px;
+    padding: 6px 14px;
     border-radius: 20px;
     font-size: 11px;
     font-weight: bold;
