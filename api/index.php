@@ -1,12 +1,10 @@
 <?php
-// Include your secure database connection
+// api/index.php
 require_once 'db_connect.php';
 
-// 1. Define the SQL query string to fetch items
+// Fetch a few recent found items to show on the homepage
 $sql = "SELECT * FROM found_items ORDER BY date_found DESC LIMIT 5";
-
-// 2. Execute the query
-$results = $mysqli->query($sql); 
+$results = $mysqli->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -34,9 +32,8 @@ $results = $mysqli->query($sql);
                 <?php while($item = $results->fetch_assoc()): ?>
                     <div class="item-card">
                         <h3><?php echo htmlspecialchars($item['item_name']); ?></h3>
-                        <p><strong>Location:</strong> <?php echo htmlspecialchars($item['location']); ?></p>
-                        <p><strong>Date:</strong> <?php echo htmlspecialchars($item['date_found']); ?></p>
-                        <p><?php echo htmlspecialchars($item['description']); ?></p>
+                        <p>Location: <?php echo htmlspecialchars($item['location']); ?></p>
+                        <p>Date: <?php echo htmlspecialchars($item['date_found']); ?></p>
                     </div>
                 <?php endwhile; ?>
             <?php else: ?>
