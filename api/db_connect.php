@@ -1,7 +1,7 @@
 <?php
-$host = 'YOUR_NEW_HOST_FROM_AIVEN'; // Update this!
+$host = 'mysql-2020e1cf-rayllylalmendras-0230.j.aivencloud.com'; // Update this!
 $user = 'avnadmin';
-$pass = 'YOUR_PASSWORD';
+$pass = 'AVNS_9keDpfhiZkvFpPmSCzA';
 $db   = 'defaultdb';
 $port = 19987;
 
